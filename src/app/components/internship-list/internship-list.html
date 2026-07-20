@@ -1,0 +1,131 @@
+<div class="internship-page">
+
+  <div class="page-header">
+
+    <div>
+      <p class="eyebrow">
+        FIND YOUR NEXT OPPORTUNITY
+      </p>
+
+      <h1>
+        Internship Opportunities
+      </h1>
+
+      <p class="subtitle">
+        Discover internships and take the next step
+        toward your career.
+      </p>
+    </div>
+
+    <div class="opportunity-count">
+      <strong>
+        {{ internships.length }}
+      </strong>
+
+      <span>
+        Opportunities
+      </span>
+    </div>
+
+  </div>
+
+  @if (loading) {
+
+    <div class="state-message">
+      <div class="loader"></div>
+      <p>Loading internships...</p>
+    </div>
+
+  }
+
+  @if (errorMessage) {
+
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+
+  }
+
+  @if (!loading && !errorMessage) {
+
+    <div class="internship-grid">
+
+      @for (
+        internship of internships;
+        track internship.id
+      ) {
+
+        <article class="internship-card">
+
+          <div class="card-top">
+
+            <div class="company-avatar">
+
+                {{ internship.company.charAt(0) }}
+
+            </div>
+
+            <span class="status-badge">
+              OPEN
+            </span>
+
+          </div>
+
+          <div class="card-content">
+
+            <h2>
+              {{ internship.title }}
+            </h2>
+
+            <p class="company-name">
+              {{ internship.company }}
+            </p>
+
+            <p class="location">
+              📍 {{ internship.location }}
+            </p>
+
+            <p class="description">
+              {{ internship.description }}
+            </p>
+
+            <div class="skills">
+              {{ internship.skills }}
+            </div>
+
+          </div>
+
+          <div class="card-footer">
+
+            <div class="stipend">
+
+              <span>
+                Stipend:
+              </span>
+
+              <strong>
+                {{ internship.stipend }}
+              </strong>
+
+            </div>
+
+            <button 
+                class="view-button" 
+                type="button"
+                [routerLink]="['/internships',internship.id]">
+
+                View Details
+                <span>→</span>
+            </button>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  }
+
+</div>

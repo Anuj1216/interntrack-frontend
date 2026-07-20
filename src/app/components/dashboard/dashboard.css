@@ -1,0 +1,45 @@
+.dashboard-container,
+.dashboard-container * {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  background: #f7f8fc;
+  padding-bottom: 80px;
+}
+
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 90px 32px 60px;
+}
+
+.hero .eyebrow {
+  color: #5146e5;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  max-width: 700px;
+  margin: 0;
+  color: #111827;
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.hero h1 span {
+  color: #5146e5;
+}
+
+.hero > p:last-child {
+  max-width: 600px;
+  margin-top: 24px;
+  color: #6b7280;
+  font-size: 18px;
+  line-height: 1.7;
+}

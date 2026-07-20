@@ -1,0 +1,114 @@
+<main class="details-page">
+
+  @if (loading) {
+
+    <div class="state-message">
+      Loading internship details...
+    </div>
+
+  }
+
+  @if (errorMessage) {
+
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+
+  }
+
+  @if (internship && !loading) {
+
+    <button
+      class="back-button"
+      (click)="goBack()">
+
+      ← Back to internships
+
+    </button>
+
+    <section class="details-card">
+
+      <div class="details-header">
+
+        <div class="company-avatar">
+
+          {{ internship.company.charAt(0) }}
+
+        </div>
+
+        <div>
+
+          <span class="status-badge">
+            OPEN
+          </span>
+
+          <h1>
+            {{ internship.title }}
+          </h1>
+
+          <p class="company-name">
+            {{ internship.company }}
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="details-grid">
+
+        <div class="info-box">
+
+          <span>Location</span>
+
+          <strong>
+            {{ internship.location }}
+          </strong>
+
+        </div>
+
+        <div class="info-box">
+
+          <span>Stipend</span>
+
+          <strong>
+            {{ internship.stipend }}
+          </strong>
+
+        </div>
+
+        <div class="info-box">
+
+          <span>Skills</span>
+
+          <strong>
+            {{ internship.skills }}
+          </strong>
+
+        </div>
+
+      </div>
+
+      <div class="description-section">
+
+        <h2>
+          About this internship
+        </h2>
+
+        <p>
+          {{ internship.description }}
+        </p>
+
+      </div>
+
+      <button
+        class="apply-button">
+
+        Apply for this Internship →
+
+      </button>
+
+    </section>
+
+  }
+
+</main>

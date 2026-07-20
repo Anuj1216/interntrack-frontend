@@ -1,0 +1,309 @@
+/* =========================
+   PAGE
+========================= */
+
+.create-page {
+  min-height: 100vh;
+  background: #f8f9fb;
+  padding: 50px 24px;
+  color: #17191c;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.form-container {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+
+.back-button {
+  border: none;
+  background: transparent;
+
+  padding: 0;
+  margin-bottom: 28px;
+
+  color: #777d87;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+
+.back-button:hover {
+  color: #17191c;
+}
+
+
+.eyebrow {
+  margin: 0 0 10px;
+
+  color: #777d87;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+}
+
+
+.page-header h1 {
+  margin: 0;
+
+  font-size: 36px;
+  letter-spacing: -1px;
+}
+
+
+.page-header p:last-child {
+  margin-top: 10px;
+
+  color: #777d87;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.internship-form {
+  padding: 34px;
+
+  background: white;
+
+  border: 1px solid #e7e8eb;
+  border-radius: 14px;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.03);
+}
+
+
+/* =========================
+   FORM GROUP
+========================= */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 22px;
+}
+
+
+.form-group label {
+  margin-bottom: 8px;
+
+  color: #30343a;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 13px 14px;
+
+  border: 1px solid #dfe1e5;
+  border-radius: 8px;
+
+  background: #fff;
+
+  color: #17191c;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.form-group textarea {
+  resize: vertical;
+
+  min-height: 140px;
+
+  line-height: 1.6;
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a3a7ae;
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #17191c;
+
+  box-shadow:
+    0 0 0 3px rgba(23, 25, 28, 0.08);
+}
+
+
+/* =========================
+   TWO COLUMN ROW
+========================= */
+
+.form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 18px;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-message {
+  margin: 10px 0 18px;
+
+  padding: 12px 14px;
+
+  border-radius: 8px;
+
+  background: #fff1f1;
+
+  color: #c0392b;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 12px;
+
+  padding-top: 10px;
+
+  border-top: 1px solid #eeeeef;
+}
+
+
+.cancel-button,
+.submit-button {
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+
+.cancel-button {
+  border: 1px solid #dfe1e5;
+
+  background: white;
+
+  color: #555b64;
+}
+
+
+.cancel-button:hover {
+  background: #f5f5f6;
+}
+
+
+.submit-button {
+  border: none;
+
+  background: #17191c;
+
+  color: white;
+}
+
+
+.submit-button:hover {
+  background: #30343a;
+
+  transform: translateY(-1px);
+}
+
+
+.submit-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 650px) {
+
+  .create-page {
+    padding: 30px 16px;
+  }
+
+  .page-header h1 {
+    font-size: 30px;
+  }
+
+  .internship-form {
+    padding: 24px 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+
+    align-items: stretch;
+  }
+
+  .cancel-button,
+  .submit-button {
+    width: 100%;
+  }
+
+}

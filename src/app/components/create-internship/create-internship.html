@@ -1,0 +1,174 @@
+<main class="create-page">
+
+  <div class="form-container">
+
+    <div class="page-header">
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="cancel()">
+
+        ← Back to dashboard
+
+      </button>
+
+      <p class="eyebrow">
+        EMPLOYER PORTAL
+      </p>
+
+      <h1>
+        Post an internship
+      </h1>
+
+      <p>
+        Share a new opportunity with talented students.
+      </p>
+
+    </div>
+
+
+    <form
+      class="internship-form"
+      (ngSubmit)="createInternship()">
+
+
+      <div class="form-group">
+
+        <label>
+          Internship title
+        </label>
+
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="internship.title"
+          placeholder="e.g. Java Backend Intern"
+          required>
+
+      </div>
+
+
+      <div class="form-row">
+
+        <div class="form-group">
+
+          <label>
+            Company name
+          </label>
+
+          <input
+            type="text"
+            name="company"
+            [(ngModel)]="internship.company"
+            placeholder="Your company"
+            required>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Location
+          </label>
+
+          <input
+            type="text"
+            name="location"
+            [(ngModel)]="internship.location"
+            placeholder="e.g. Kathmandu / Remote"
+            required>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Required skills
+        </label>
+
+        <input
+          type="text"
+          name="skills"
+          [(ngModel)]="internship.skills"
+          placeholder="Java, Spring Boot, MySQL"
+          required>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Stipend
+        </label>
+
+        <input
+          type="text"
+          name="stipend"
+          [(ngModel)]="internship.stipend"
+          placeholder="e.g. NPR 15,000/month">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Description
+        </label>
+
+        <textarea
+          name="description"
+          [(ngModel)]="internship.description"
+          rows="6"
+          placeholder="Describe the internship..."
+          required>
+        </textarea>
+
+      </div>
+
+
+      <p
+        class="error-message"
+        *ngIf="errorMessage">
+
+        {{ errorMessage }}
+
+      </p>
+
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          class="cancel-button"
+          (click)="cancel()">
+
+          Cancel
+
+        </button>
+
+        <button
+          type="submit"
+          class="submit-button"
+          [disabled]="loading">
+
+          {{ loading
+            ? 'Publishing...'
+            : 'Publish Internship'
+          }}
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</main>

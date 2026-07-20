@@ -1,0 +1,279 @@
+<main class="applications-page">
+
+  <div class="applications-container">
+
+    <!-- HEADER -->
+
+    <header class="page-header">
+
+      <div>
+
+        <p class="eyebrow">
+          EMPLOYER PORTAL
+        </p>
+
+        <h1>
+          Applications
+        </h1>
+
+        <p class="page-description">
+          Review and manage applications submitted
+          by students for your internship opportunities.
+        </p>
+
+      </div>
+
+      <button
+        class="refresh-button"
+        type="button"
+        (click)="loadApplications()">
+
+        ↻ Refresh
+
+      </button>
+
+    </header>
+
+
+    <!-- LOADING -->
+
+    <div
+      class="state-card"
+      *ngIf="loading">
+
+      <div class="loading-spinner"></div>
+
+      <p>
+        Loading applications...
+      </p>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+      class="state-card error-card"
+      *ngIf="
+        !loading &&
+        errorMessage
+      ">
+
+      <p>
+        {{ errorMessage }}
+      </p>
+
+      <button
+        class="retry-button"
+        type="button"
+        (click)="loadApplications()">
+
+        Try Again
+
+      </button>
+
+    </div>
+
+
+    <!-- APPLICATIONS -->
+
+    <section
+      class="applications-section"
+      *ngIf="
+        !loading &&
+        !errorMessage
+      ">
+
+
+      <!-- EMPTY STATE -->
+
+      <div
+        class="state-card"
+        *ngIf="
+          applications.length === 0
+        ">
+
+        <div class="empty-icon">
+          ✓
+        </div>
+
+        <h2>
+          No applications yet
+        </h2>
+
+        <p>
+          Applications submitted by students
+          will appear here.
+        </p>
+
+      </div>
+
+
+      <!-- APPLICATION LIST -->
+
+      <div
+        class="applications-list"
+        *ngIf="
+          applications.length > 0
+        ">
+
+
+        <article
+          class="application-card"
+          *ngFor="
+            let application of applications
+          ">
+
+
+          <!-- STUDENT INFORMATION -->
+
+          <div class="student-section">
+
+            <div class="student-avatar">
+
+              {{
+                application.applicantName
+                  ?.charAt(0)
+                  ?.toUpperCase()
+              }}
+
+            </div>
+
+            <div>
+
+              <h2>
+                {{ application.applicantName }}
+              </h2>
+
+              <p class="student-email">
+                {{ application.email }}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- INTERNSHIP -->
+
+          <div class="application-info">
+
+            <span class="info-label">
+              Internship
+            </span>
+
+            <strong>
+              {{
+                application.internship?.title
+                || 'Unknown Internship'
+              }}
+            </strong>
+
+            <span class="company-name">
+
+              {{
+                application.internship?.company
+                || ''
+              }}
+
+            </span>
+
+          </div>
+
+
+          <!-- DATE -->
+
+          <div class="application-info">
+
+            <span class="info-label">
+              Applied on
+            </span>
+
+            <strong>
+              {{ application.appliedDate }}
+            </strong>
+
+          </div>
+
+
+          <!-- STATUS -->
+
+          <div class="status-section">
+
+            <span
+              class="status-badge"
+              [class.pending]="
+                application.status === 'PENDING'
+              "
+              [class.approved]="
+                application.status === 'APPROVED'
+              "
+              [class.rejected]="
+                application.status === 'REJECTED'
+              ">
+
+              {{ application.status }}
+
+            </span>
+
+          </div>
+
+
+          <!-- ACTIONS -->
+
+          <div
+            class="application-actions"
+            *ngIf="
+              application.status === 'PENDING'
+            ">
+
+            <button
+              class="approve-button"
+              type="button"
+              (click)="
+                approveApplication(
+                  application.id
+                )
+              ">
+
+              Approve
+
+            </button>
+
+            <button
+              class="reject-button"
+              type="button"
+              (click)="
+                rejectApplication(
+                  application.id
+                )
+              ">
+
+              Reject
+
+            </button>
+
+          </div>
+
+
+          <!-- COMPLETED -->
+
+          <div
+            class="completed-label"
+            *ngIf="
+              application.status !== 'PENDING'
+            ">
+
+            Application reviewed
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</main>

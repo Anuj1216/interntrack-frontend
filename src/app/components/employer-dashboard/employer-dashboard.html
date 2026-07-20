@@ -1,0 +1,218 @@
+<main class="employer-dashboard">
+
+  <!-- Top Navigation -->
+  <nav class="dashboard-nav">
+
+    <div class="brand">
+      <div class="brand-icon">I</div>
+      <span>InternTrack</span>
+    </div>
+
+    <div class="nav-actions">
+
+      <button
+        class="icon-button"
+        type="button"
+        (click)="goToApplications()">
+
+        ♧
+
+      </button>
+
+      <div class="user-profile">
+
+        <div class="avatar">
+          E
+        </div>
+
+        <div class="user-info">
+
+          <strong>
+            Employer
+          </strong>
+
+          <span>
+            Employer account
+          </span>
+
+        </div>
+
+      </div>
+
+      <button
+        class="logout-button"
+        type="button"
+        (click)="logout()">
+
+        Logout
+
+      </button>
+
+    </div>
+
+  </nav>
+
+
+  <!-- Main Content -->
+  <section class="dashboard-content">
+
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+
+      <div>
+
+        <p class="eyebrow">
+          EMPLOYER DASHBOARD
+        </p>
+
+        <h1>
+          Welcome back 👋
+        </h1>
+
+        <p class="welcome-text">
+          Manage your internship opportunities and connect with talented students.
+        </p>
+
+      </div>
+
+      <button
+        class="primary-button"
+        type="button"
+        (click)="goToCreateInternship()">
+
+        + Post Internship
+
+      </button>
+
+    </section>
+
+
+    <!-- Statistics -->
+    <section class="stats">
+
+      <div class="stat-card">
+
+        <span class="stat-label">
+          Active internships
+        </span>
+
+        <strong class="stat-number">
+          {{internshipCount}}
+        </strong>
+
+        <span class="stat-note">
+          Currently published
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <span class="stat-label">
+          Applications received
+        </span>
+
+        <strong class="stat-number">
+          {{applicationCount}}
+        </strong>
+
+        <span class="stat-note">
+          From students
+        </span>
+
+      </div>
+
+
+      
+
+    </section>
+
+
+    <!-- Main Actions -->
+    <section class="section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <h2>
+            Manage your workspace
+          </h2>
+
+          <p>
+            Everything you need to manage your internships.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="action-grid">
+
+
+        <button
+          class="action-card"
+          type="button"
+          (click)="goToCreateInternship()">
+
+          <div class="action-icon">
+            +
+          </div>
+
+          <div>
+
+            <h3>
+              Post an Internship
+            </h3>
+
+            <p>
+              Create a new opportunity and attract talented students.
+            </p>
+
+          </div>
+
+          <span class="action-arrow">
+            →
+          </span>
+
+        </button>
+
+
+        <button
+          class="action-card"
+          type="button"
+          (click)="goToApplications()">
+
+          <div class="action-icon">
+            ♙
+          </div>
+
+          <div>
+
+            <h3>
+              Applications
+            </h3>
+
+            <p>
+              Review applications and discover potential candidates.
+            </p>
+
+          </div>
+
+          <span class="action-arrow">
+            →
+          </span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+  </section>
+
+</main>
