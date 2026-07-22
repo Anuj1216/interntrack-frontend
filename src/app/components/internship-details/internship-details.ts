@@ -80,17 +80,4 @@ export class InternshipDetails implements OnInit {
 
   }
 
-  applyNow(): void {
-
-    if (!this.internship) {
-      return;
-    }
-
-    this.router.navigate([
-      '/apply',
-      this.internship.id
-    ]);
-
-  }
-
 }

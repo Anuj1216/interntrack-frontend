@@ -7,8 +7,8 @@ import { ApplicationService } from '../../services/application';
   selector: 'app-application',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './application.html',
-  styleUrl: './application.css'
+  templateUrl: './application-list.html',
+  styleUrl: './application-list.css'
 })
 export class Application implements OnInit {
 
