@@ -1,7 +1,7 @@
 import {
+  ChangeDetectorRef,
   Component,
-  OnInit,
-  ChangeDetectorRef
+  OnInit
 } from '@angular/core';
 
 import {
@@ -9,36 +9,22 @@ import {
 } from '@angular/router';
 
 import {
-  Internship
-} from '../../models/internship';
-
-import {
-  InternshipService
-} from '../../services/internship';
-
-import {
   ApplicationService
-} from '../../services/application';
+} from '../services/application';
 
 @Component({
-  selector: 'app-employer-dashboard',
+  selector: 'app-employer-applications',
   standalone: true,
   imports: [],
-  templateUrl: './employer-dashboard.html',
-  styleUrl: './employer-dashboard.css'
+  templateUrl: './employer-applications.html',
+  styleUrl: './employer-applications.css'
 })
-export class EmployerDashboard
+export class EmployerApplications
   implements OnInit {
 
   currentUser: any = null;
 
-  internships: Internship[] = [];
-
   applications: any[] = [];
-
-  internshipCount = 0;
-
-  applicationCount = 0;
 
   loading = true;
 
@@ -46,7 +32,6 @@ export class EmployerDashboard
 
   constructor(
     private router: Router,
-    private internshipService: InternshipService,
     private applicationService: ApplicationService,
     private cdr: ChangeDetectorRef
   ) {}
@@ -87,62 +72,17 @@ export class EmployerDashboard
 
     }
 
-    this.loadDashboardData();
+    this.loadApplications();
 
   }
 
-  loadDashboardData(): void {
-
-    const employerId =
-      this.currentUser.id;
+  loadApplications(): void {
 
     this.loading = true;
 
-    this.internshipService
-      .getInternshipsByEmployer(
-        employerId
-      )
-      .subscribe({
-
-        next: (
-          data: Internship[]
-        ) => {
-
-          this.internships =
-            data;
-
-          this.internshipCount =
-            data.length;
-
-            this.cdr.detectChanges();
-
-          this.loading =
-            false;
-
-        },
-
-        error: (
-          error
-        ) => {
-
-          console.error(
-            'Error loading internships:',
-            error
-          );
-
-          this.errorMessage =
-            'Unable to load internships';
-
-          this.loading =
-            false;
-
-        }
-
-      });
-
     this.applicationService
       .getApplicationsByEmployer(
-        employerId
+        this.currentUser.id
       )
       .subscribe({
 
@@ -153,14 +93,15 @@ export class EmployerDashboard
           this.applications =
             data;
 
-          this.applicationCount =
-            data.length;
+          this.loading =
+            false;
 
           this.cdr.detectChanges();
+
         },
 
         error: (
-          error
+          error: any
         ) => {
 
           console.error(
@@ -168,45 +109,17 @@ export class EmployerDashboard
             error
           );
 
+          this.errorMessage =
+            'Unable to load applications';
+
+          this.loading =
+            false;
+
+          this.cdr.detectChanges();
+
         }
 
       });
-
-  }
-
-  goToCreateInternship(): void {
-
-    this.router.navigate([
-      '/employer/internships/new'
-    ]);
-
-  }
-
-  goToInternships(): void {
-
-    this.router.navigate([
-      '/employer/internships'
-    ]);
-
-  }
-
-  goToApplications(): void {
-
-    this.router.navigate([
-      '/employer/applications'
-    ]);
-
-  }
-
-  logout(): void {
-
-    localStorage.removeItem(
-      'currentUser'
-    );
-
-    this.router.navigate([
-      '/login'
-    ]);
 
   }
 
@@ -223,12 +136,12 @@ export class EmployerDashboard
 
         next: () => {
 
-          this.loadDashboardData();
+          this.loadApplications();
 
         },
 
         error: (
-          error
+          error: any
         ) => {
 
           console.error(
@@ -255,12 +168,12 @@ export class EmployerDashboard
 
         next: () => {
 
-          this.loadDashboardData();
+          this.loadApplications();
 
         },
 
         error: (
-          error
+          error: any
         ) => {
 
           console.error(
@@ -271,6 +184,26 @@ export class EmployerDashboard
         }
 
       });
+
+  }
+
+  goBack(): void {
+
+    this.router.navigate([
+      '/employer-dashboard'
+    ]);
+
+  }
+
+  logout(): void {
+
+    localStorage.removeItem(
+      'currentUser'
+    );
+
+    this.router.navigate([
+      '/login'
+    ]);
 
   }
 

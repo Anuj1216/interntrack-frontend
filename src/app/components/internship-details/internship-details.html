@@ -2,112 +2,123 @@
 
   @if (loading) {
 
-    <div class="state-message">
-      Loading internship details...
-    </div>
+  <div class="state-message">
+    Loading internship details...
+  </div>
 
   }
 
   @if (errorMessage) {
 
-    <div class="error-message">
-      {{ errorMessage }}
-    </div>
+  <div class="error-message">
+    {{ errorMessage }}
+  </div>
 
   }
 
   @if (internship && !loading) {
 
-    <button
-      class="back-button"
-      (click)="goBack()">
+  <button class="back-button" (click)="goBack()">
 
-      ← Back to internships
+    ← Back to internships
 
-    </button>
+  </button>
 
-    <section class="details-card">
+  <section class="details-card">
 
-      <div class="details-header">
+    <div class="details-header">
 
-        <div class="company-avatar">
+      <div class="company-avatar">
 
-          {{ internship.company.charAt(0) }}
-
-        </div>
-
-        <div>
-
-          <span class="status-badge">
-            OPEN
-          </span>
-
-          <h1>
-            {{ internship.title }}
-          </h1>
-
-          <p class="company-name">
-            {{ internship.company }}
-          </p>
-
-        </div>
+        {{ internship.company.charAt(0) }}
 
       </div>
 
-      <div class="details-grid">
+      <div>
 
-        <div class="info-box">
+        <span class="status-badge">
+          OPEN
+        </span>
 
-          <span>Location</span>
+        <h1>
+          {{ internship.title }}
+        </h1>
 
-          <strong>
-            {{ internship.location }}
-          </strong>
-
-        </div>
-
-        <div class="info-box">
-
-          <span>Stipend</span>
-
-          <strong>
-            {{ internship.stipend }}
-          </strong>
-
-        </div>
-
-        <div class="info-box">
-
-          <span>Skills</span>
-
-          <strong>
-            {{ internship.skills }}
-          </strong>
-
-        </div>
-
-      </div>
-
-      <div class="description-section">
-
-        <h2>
-          About this internship
-        </h2>
-
-        <p>
-          {{ internship.description }}
+        <p class="company-name">
+          {{ internship.company }}
         </p>
 
       </div>
 
-      <button
-        class="apply-button">
+    </div>
 
-        Apply for this Internship →
+    <div class="details-grid">
 
-      </button>
+      <div class="info-box">
 
-    </section>
+        <span>Location</span>
+
+        <strong>
+          {{ internship.location }}
+        </strong>
+
+      </div>
+
+      <div class="info-box">
+
+        <span>Stipend</span>
+
+        <strong>
+          {{ internship.stipend }}
+        </strong>
+
+      </div>
+
+      <div class="info-box">
+
+        <span>Skills</span>
+
+        <strong>
+          {{ internship.skills }}
+        </strong>
+
+      </div>
+
+    </div>
+
+    <div class="description-section">
+
+      <h2>
+        About this internship
+      </h2>
+
+      <p>
+        {{ internship.description }}
+      </p>
+
+    </div>
+
+    <button class="apply-button" (click)="apply()" [disabled]="applying">
+
+      Apply for this Internship →
+
+    </button>
+    @if (applicationMessage) {
+
+    <p class="success-message">
+      {{ applicationMessage }}
+    </p>
+
+    }
+
+    @if (applicationError) {
+
+    <p class="error-message">
+      {{ applicationError }}
+    </p>
+
+    }
+  </section>
 
   }
 

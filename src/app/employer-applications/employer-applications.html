@@ -1,0 +1,305 @@
+
+<main class="applications-page">
+
+  <nav class="dashboard-nav">
+
+    <div class="brand">
+
+      <div class="brand-icon">
+        I
+      </div>
+
+      <span>
+        InternTrack
+      </span>
+
+    </div>
+
+    <div class="nav-actions">
+
+      <button
+        class="back-button"
+        type="button"
+        (click)="goBack()">
+
+        ← Dashboard
+
+      </button>
+
+      <div class="user-profile">
+
+        <div class="avatar">
+
+          {{ currentUser?.name?.charAt(0) }}
+
+        </div>
+
+        <div class="user-info">
+
+          <strong>
+            {{ currentUser?.name }}
+          </strong>
+
+          <span>
+            Employer account
+          </span>
+
+        </div>
+
+      </div>
+
+      <button
+        class="logout-button"
+        type="button"
+        (click)="logout()">
+
+        Logout
+
+      </button>
+
+    </div>
+
+  </nav>
+
+
+  <section class="applications-content">
+
+    <div class="page-header">
+
+      <div>
+
+        <p class="eyebrow">
+          EMPLOYER WORKSPACE
+        </p>
+
+        <h1>
+          Applications
+        </h1>
+
+        <p class="page-description">
+          Review applications submitted to your internships.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    @if (loading) {
+
+      <div class="state-card">
+
+        <div class="loader"></div>
+
+        <p>
+          Loading applications...
+        </p>
+
+      </div>
+
+    }
+
+
+    @if (errorMessage && !loading) {
+
+      <div class="error-card">
+
+        {{ errorMessage }}
+
+      </div>
+
+    }
+
+
+    @if (!loading && !errorMessage && applications.length === 0) {
+
+      <div class="state-card empty-state">
+
+        <div class="empty-icon">
+          ◌
+        </div>
+
+        <h2>
+          No applications yet
+        </h2>
+
+        <p>
+          Applications from students will appear here.
+        </p>
+
+      </div>
+
+    }
+
+
+    @if (!loading && applications.length > 0) {
+
+      <section class="applications-list">
+
+        @for (
+          application of applications;
+          track application.id
+        ) {
+
+          <article class="application-card">
+
+            <div class="application-header">
+
+              <div class="applicant">
+
+                <div class="applicant-avatar">
+
+                  {{
+                    application.student?.name
+                      ?.charAt(0)
+                  }}
+
+                </div>
+
+                <div>
+
+                  <h2>
+
+                    {{
+                      application.student?.name
+                      || application.applicantName
+                    }}
+
+                  </h2>
+
+                  <p>
+
+                    {{
+                      application.student?.email
+                      || application.email
+                    }}
+
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <span
+                class="status"
+                [class.pending]="
+                  application.status === 'PENDING'
+                "
+                [class.approved]="
+                  application.status === 'APPROVED'
+                "
+                [class.rejected]="
+                  application.status === 'REJECTED'
+                ">
+
+                {{ application.status }}
+
+              </span>
+
+            </div>
+
+
+            <div class="application-details">
+
+              <div>
+
+                <span>
+                  Applied for
+                </span>
+
+                <strong>
+
+                  {{
+                    application.internship?.title
+                  }}
+
+                </strong>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  Company
+                </span>
+
+                <strong>
+
+                  {{
+                    application.internship?.company
+                  }}
+
+                </strong>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  Applied date
+                </span>
+
+                <strong>
+
+                  {{
+                    application.appliedDate
+                  }}
+
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            @if (
+              application.status === 'PENDING'
+            ) {
+
+              <div class="application-actions">
+
+                <button
+                  class="approve-button"
+                  type="button"
+                  (click)="
+                    approveApplication(
+                      application.id
+                    )
+                  ">
+
+                  Approve
+
+                </button>
+
+
+                <button
+                  class="reject-button"
+                  type="button"
+                  (click)="
+                    rejectApplication(
+                      application.id
+                    )
+                  ">
+
+                  Reject
+
+                </button>
+
+              </div>
+
+            }
+
+          </article>
+
+        }
+
+      </section>
+
+    }
+
+  </section>
+
+</main>

@@ -1,19 +1,36 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 
-import { Internship } from '../../models/internship';
-import { InternshipService } from '../../services/internship';
+import {
+  FormsModule
+} from '@angular/forms';
+
+import {
+  Router
+} from '@angular/router';
+
+import {
+  Internship
+} from '../../models/internship';
+
+import {
+  InternshipService
+} from '../../services/internship';
 
 
 @Component({
   selector: 'app-create-internship',
   standalone: true,
-  imports: [FormsModule],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './create-internship.html',
   styleUrl: './create-internship.css'
 })
-export class CreateInternship {
+export class CreateInternship
+  implements OnInit {
 
   internship: Internship = {
 
@@ -30,19 +47,71 @@ export class CreateInternship {
 
   errorMessage = '';
 
+  currentUser: any = null;
+
   constructor(
     private internshipService: InternshipService,
     private router: Router
   ) {}
 
+  ngOnInit(): void {
+
+    const storedUser =
+      localStorage.getItem(
+        'currentUser'
+      );
+
+    if (!storedUser) {
+
+      this.router.navigate([
+        '/login'
+      ]);
+
+      return;
+
+    }
+
+    this.currentUser =
+      JSON.parse(
+        storedUser
+      );
+
+    if (
+      this.currentUser.role
+        .toUpperCase()
+        !== 'EMPLOYER'
+    ) {
+
+      this.router.navigate([
+        '/'
+      ]);
+
+      return;
+
+    }
+
+  }
+
   createInternship(): void {
+
+    if (!this.currentUser) {
+
+      this.errorMessage =
+        'You must be logged in as an employer.';
+
+      return;
+
+    }
 
     this.loading = true;
 
     this.errorMessage = '';
 
     this.internshipService
-      .createInternship(this.internship)
+      .createInternship(
+        this.currentUser.id,
+        this.internship
+      )
       .subscribe({
 
         next: () => {

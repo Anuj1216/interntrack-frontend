@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {
+  HttpClient
+} from '@angular/common/http';
 
-import { Internship } from '../models/internship';
+import {
+  Observable
+} from 'rxjs';
+
+import {
+  Internship
+} from '../models/internship';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +19,16 @@ export class InternshipService {
   private apiUrl =
     'http://localhost:8080/api/internships';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient
+  ) {}
 
-  getInternships(): Observable<Internship[]> {
+  getAllInternships(): Observable<Internship[]> {
 
     return this.http.get<Internship[]>(
       this.apiUrl
     );
+
   }
 
   getInternshipById(
@@ -28,23 +38,59 @@ export class InternshipService {
     return this.http.get<Internship>(
       `${this.apiUrl}/${id}`
     );
+
   }
 
-  createInternship(
-    internship: Internship
-  ): Observable<Internship> {
+  getInternshipsByEmployer(
+    employerId: number
+  ): Observable<Internship[]> {
 
-    return this.http.post<Internship>(
-      this.apiUrl,
-      internship
+    return this.http.get<Internship[]>(
+      `${this.apiUrl}/employer/${employerId}`
     );
+
   }
 
   getInternshipCount(): Observable<number> {
 
     return this.http.get<number>(
-        `${this.apiUrl}/count`
+      `${this.apiUrl}/count`
     );
 
-    }
+  }
+
+  createInternship(
+    employerId: number,
+    internship: Internship
+  ): Observable<Internship> {
+
+    return this.http.post<Internship>(
+      `${this.apiUrl}?employerId=${employerId}`,
+      internship
+    );
+
+  }
+
+  updateInternship(
+    id: number,
+    internship: Internship
+  ): Observable<Internship> {
+
+    return this.http.put<Internship>(
+      `${this.apiUrl}/${id}`,
+      internship
+    );
+
+  }
+
+  deleteInternship(
+    id: number
+  ): Observable<void> {
+
+    return this.http.delete<void>(
+      `${this.apiUrl}/${id}`
+    );
+
+  }
+
 }

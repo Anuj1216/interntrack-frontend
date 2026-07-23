@@ -5,8 +5,10 @@ import { InternshipDetails } from './components/internship-details/internship-de
 import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 import {EmployerDashboard} from './components/employer-dashboard/employer-dashboard';
+import { EmployerApplications } from './employer-applications/employer-applications';
 import { CreateInternship } from './components/create-internship/create-internship';
 import { Application } from './components/application-list/application-list';
+import { Home } from './components/home/home';
 
 import { employerGuard } from './guards/employer-guard';
 
@@ -41,6 +43,12 @@ export const routes: Routes = [
   {
     path: 'employer-dashboard',
     component: EmployerDashboard,
+    canActivate: [employerGuard]
+  },
+
+  {
+    path: 'employer/applications',
+    component: EmployerApplications,
     canActivate: [employerGuard]
   },
 

@@ -132,14 +132,15 @@
 
       </div>
 
-
-      <p
-        class="error-message"
-        *ngIf="errorMessage">
+      @if(errorMessage){
+        <p
+        class="error-message">
 
         {{ errorMessage }}
 
       </p>
+      }
+      
 
 
       <div class="form-actions">

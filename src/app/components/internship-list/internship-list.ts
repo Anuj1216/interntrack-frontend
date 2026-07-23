@@ -36,10 +36,10 @@ export class InternshipList implements OnInit {
     console.log('InternshipList initialized');
 
     this.internshipService
-      .getInternships()
+      .getAllInternships()
       .subscribe({
 
-        next: (data) => {
+        next: (data: Internship[]) => {
 
           console.log('API data:', data);
 
@@ -56,7 +56,7 @@ export class InternshipList implements OnInit {
 
         },
 
-        error: (error) => {
+        error: (error: any) => {
 
           console.error('API error:', error);
 

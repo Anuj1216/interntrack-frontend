@@ -79,6 +79,28 @@
   background: #4338ca;
 }
 
+.user-name {
+  font-weight: 600;
+  color: #1f2937;
+  padding: 8px 14px;
+}
+
+.logout-button {
+  border: none;
+  background: transparent;
+  color: #dc2626;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.logout-button:hover {
+  background: #fee2e2;
+}
+
 @media (max-width: 650px) {
 
   .navbar-container {

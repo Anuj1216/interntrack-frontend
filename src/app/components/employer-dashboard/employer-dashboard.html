@@ -1,11 +1,17 @@
 <main class="employer-dashboard">
 
-  <!-- Top Navigation -->
   <nav class="dashboard-nav">
 
     <div class="brand">
-      <div class="brand-icon">I</div>
-      <span>InternTrack</span>
+
+      <div class="brand-icon">
+        I
+      </div>
+
+      <span>
+        InternTrack
+      </span>
+
     </div>
 
     <div class="nav-actions">
@@ -22,13 +28,23 @@
       <div class="user-profile">
 
         <div class="avatar">
-          E
+
+          {{
+            currentUser?.name
+              ?.charAt(0)
+              ?.toUpperCase()
+          }}
+
         </div>
 
         <div class="user-info">
 
           <strong>
-            Employer
+
+            {{
+              currentUser?.name
+            }}
+
           </strong>
 
           <span>
@@ -53,11 +69,20 @@
   </nav>
 
 
-  <!-- Main Content -->
   <section class="dashboard-content">
 
 
-    <!-- Welcome Section -->
+    @if (errorMessage) {
+
+      <div class="error-message">
+
+        {{ errorMessage }}
+
+      </div>
+
+    }
+
+
     <section class="welcome-section">
 
       <div>
@@ -67,11 +92,17 @@
         </p>
 
         <h1>
-          Welcome back 👋
+          Welcome back,
+          {{
+            currentUser?.name
+          }}
         </h1>
 
         <p class="welcome-text">
-          Manage your internship opportunities and connect with talented students.
+
+          Manage your internship opportunities
+          and connect with talented students.
+
         </p>
 
       </div>
@@ -88,8 +119,8 @@
     </section>
 
 
-    <!-- Statistics -->
     <section class="stats">
+
 
       <div class="stat-card">
 
@@ -98,11 +129,13 @@
         </span>
 
         <strong class="stat-number">
-          {{internshipCount}}
+
+          {{ internshipCount }}
+
         </strong>
 
         <span class="stat-note">
-          Currently published
+          Your published internships
         </span>
 
       </div>
@@ -115,22 +148,37 @@
         </span>
 
         <strong class="stat-number">
-          {{applicationCount}}
+
+          {{ applicationCount }}
+
         </strong>
 
         <span class="stat-note">
-          From students
+          Applications for your internships
         </span>
 
       </div>
 
 
-      
+      <div class="stat-card">
+
+        <span class="stat-label">
+          Account role
+        </span>
+
+        <strong class="role-number">
+          Employer
+        </strong>
+
+        <span class="stat-note">
+          Manage your opportunities
+        </span>
+
+      </div>
 
     </section>
 
 
-    <!-- Main Actions -->
     <section class="section">
 
       <div class="section-heading">
@@ -169,7 +217,41 @@
             </h3>
 
             <p>
-              Create a new opportunity and attract talented students.
+
+              Create a new opportunity
+              and attract talented students.
+
+            </p>
+
+          </div>
+
+          <span class="action-arrow">
+            →
+          </span>
+
+        </button>
+
+
+        <button
+          class="action-card"
+          type="button"
+          (click)="goToInternships()">
+
+          <div class="action-icon">
+            ◫
+          </div>
+
+          <div>
+
+            <h3>
+              My Internships
+            </h3>
+
+            <p>
+
+              View and manage the internships
+              you have posted.
+
             </p>
 
           </div>
@@ -197,7 +279,10 @@
             </h3>
 
             <p>
-              Review applications and discover potential candidates.
+
+              Review applications and
+              discover potential candidates.
+
             </p>
 
           </div>

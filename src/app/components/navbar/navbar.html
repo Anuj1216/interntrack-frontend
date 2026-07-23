@@ -16,32 +16,64 @@
 
     </a>
 
+
     <div class="nav-links">
 
-      <a
-        routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }">
 
-        Find Internships
+      @if (isEmployer()) {
 
-      </a>
+        <a
+          routerLink="/employer-dashboard"
+          routerLinkActive="active">
 
-      <a
-        routerLink="/login"
-        class="login-link">
+          Dashboard
 
-        Login
+        </a>
 
-      </a>
+      }
 
-      <a
-        routerLink="/register"
-        class="register-button">
 
-        Register
+      @if (currentUser) {
 
-      </a>
+        <span class="user-name">
+
+          {{ currentUser.name }}
+
+        </span>
+
+
+        <button
+          class="logout-button"
+          type="button"
+          (click)="logout()">
+
+          Logout
+
+        </button>
+
+      }
+
+
+      @if (!currentUser) {
+
+        <a
+          routerLink="/login"
+          class="login-link">
+
+          Login
+
+        </a>
+
+
+        <a
+          routerLink="/register"
+          class="register-button">
+
+          Register
+
+        </a>
+
+      }
 
     </div>
 
