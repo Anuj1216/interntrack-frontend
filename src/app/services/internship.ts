@@ -17,7 +17,7 @@ import {
 export class InternshipService {
 
   private apiUrl =
-    'http://interntrack-backend-production-dd2c.up.railway.app/api/internships';
+    'https://interntrack-backend-production-dd2c.up.railway.app/api/internships';
 
   constructor(
     private http: HttpClient
