@@ -26,8 +26,7 @@
 
     </div>
 
-    <form
-      (ngSubmit)="login()">
+    <form (ngSubmit)="login()">
 
       <div class="form-group">
 
@@ -35,13 +34,7 @@
           Email address
         </label>
 
-        <input
-          id="email"
-          type="email"
-          name="email"
-          [(ngModel)]="email"
-          placeholder="you@example.com"
-          required>
+        <input id="email" type="email" name="email" [(ngModel)]="email" placeholder="you@example.com" required>
 
       </div>
 
@@ -59,37 +52,37 @@
 
         </div>
 
-        <input
-          id="password"
-          type="password"
-          name="password"
-          [(ngModel)]="password"
-          placeholder="Enter your password"
+        <input id="password" type="password" name="password" [(ngModel)]="password" placeholder="Enter your password"
           required>
 
       </div>
 
       @if (errorMessage) {
 
-        <div class="error-message">
+      <div class="error-message">
 
-          {{ errorMessage }}
+        {{ errorMessage }}
 
-        </div>
+      </div>
 
       }
+      <div>
+        <button type="submit" class="auth-button" [disabled]="loading">
 
-      <button
-        type="submit"
-        class="auth-button"
-        [disabled]="loading">
-
-        {{ loading
+          {{ loading
           ? 'Signing in...'
           : 'Sign in'
-        }}
+          }}
 
-      </button>
+        </button>
+
+        @if(errorMessage){
+        <p class="error-message">
+          {{errorMessage}}
+        </p>
+        }
+      </div>
+
 
     </form>
 
