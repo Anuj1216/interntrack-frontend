@@ -15,7 +15,7 @@ export interface User {
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = 'http://interntrack-backend-production-dd2c.up.railway.app/api/auth';
 
   constructor(private http: HttpClient) {}
 
